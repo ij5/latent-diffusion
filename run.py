@@ -1,4 +1,5 @@
 import argparse, os, sys, glob
+import requests
 import torch
 import numpy as np
 from omegaconf import OmegaConf
@@ -40,6 +41,12 @@ H = 256
 W = 256
 n_samples = 1
 scale = 5.0
+
+if not os.path.isfile("latent-diffusion/models/ldm/text2img-large/model.ckpt"):
+    r = requests.get("https://huggingface.co/ij5/latent-diffusion/resolve/main/model.ckpt", stream=True)
+    with open("latent-diffusion/models/ldm/text2img-large/model.ckpt", "wb") as f:
+        for chunk in r.iter_content(chunk_size=1024):
+            f.write(chunk)
 
 config = OmegaConf.load("latent-diffusion/configs/latent-diffusion/txt2img-1p4B-eval.yaml")
 model = load_model_from_config(config, "latent-diffusion/models/ldm/text2img-large/model.ckpt")
