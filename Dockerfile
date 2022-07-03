@@ -22,4 +22,4 @@ COPY ldm ./
 
 COPY run.py ./
 
-ENTRYPOINT ["python", "./run.py"]
+ENTRYPOINT ["python", "run.py"]
