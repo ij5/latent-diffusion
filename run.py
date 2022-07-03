@@ -8,6 +8,8 @@ from tqdm import tqdm, trange
 from einops import rearrange
 from torchvision.utils import make_grid
 
+sys.path.append('/app')
+
 from ldm.util import instantiate_from_config
 from ldm.models.diffusion.ddim import DDIMSampler
 from ldm.models.diffusion.plms import PLMSSampler
