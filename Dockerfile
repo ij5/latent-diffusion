@@ -1,6 +1,12 @@
-FROM python:3
+FROM nvidia/cuda:10.0-runtime-ubuntu18.04
 
 WORKDIR /app
+
+RUN apt update
+
+RUN apt install -y python3
+
+RUN apt install -y python3-pip
 
 COPY requirements.txt ./
 
