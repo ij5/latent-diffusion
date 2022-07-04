@@ -66,6 +66,7 @@ os.makedirs(sample_path, exist_ok=True)
 base_count = len(os.listdir(sample_path))
 
 def generate(prompt: str):
+    global base_count, sample_path
     all_samples=list()
     with torch.no_grad():
         with model.ema_scope():
