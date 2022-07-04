@@ -1,16 +1,12 @@
-FROM nvidia/cuda:10.0-runtime-ubuntu18.04
+FROM nvidia/cuda:11.4.3-cudnn8-devel-ubuntu20.04
+
+EXPOSE 8080
 
 WORKDIR /app
 
 RUN apt update
 
-RUN apt install -y python3
-
 RUN apt install -y python3-pip
-
-RUN pip3 install cmake
-
-RUN pip3 install skbuild
 
 COPY requirements.txt ./
 
