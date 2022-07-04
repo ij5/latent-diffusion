@@ -18,8 +18,9 @@ from flask import Flask, jsonify, request, send_file
 
 def load_model_from_config(config, ckpt, verbose=False):
     print(f"Loading model from {ckpt}")
-    pl_sd = torch.load(ckpt, map_location="cpu")
-    sd = pl_sd["state_dict"]
+    pl_sd = torch.load(ckpt, map_location="cuda")
+    # sd = pl_sd["state_dict"]
+    sd = pl_sd
     model = instantiate_from_config(config.model)
     m, u = model.load_state_dict(sd, strict=False)
     if len(m) > 0 and verbose:
@@ -45,7 +46,7 @@ n_samples = 1
 scale = 5.0
 
 if not os.path.isfile("latent-diffusion/models/ldm/text2img-large/model.ckpt"):
-    r = requests.get("https://huggingface.co/ij5/latent-diffusion/resolve/main/model.ckpt", stream=True)
+    r = requests.get("https://huggingface.co/multimodalart/compvis-latent-diffusion-text2img-large/resolve/main/txt2img-f8-large-fp16.ckpt", stream=True)
     with open("latent-diffusion/models/ldm/text2img-large/model.ckpt", "wb") as f:
         for chunk in r.iter_content(chunk_size=1024):
             f.write(chunk)
