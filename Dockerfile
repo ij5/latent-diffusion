@@ -8,6 +8,8 @@ RUN apt install -y python3
 
 RUN apt install -y python3-pip
 
+RUN pip3 install cmake
+
 RUN pip3 install skbuild
 
 COPY requirements.txt ./
