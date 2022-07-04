@@ -12,9 +12,9 @@ COPY requirements.txt ./
 
 COPY latent-diffusion/ ./latent-diffusion/
 
-RUN pip install -r requirements.txt
-RUN pip install -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
-RUN pip install -e git+https://github.com/openai/CLIP.git@main#egg=clip
+RUN pip3 install -r requirements.txt
+RUN pip3 install -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
+RUN pip3 install -e git+https://github.com/openai/CLIP.git@main#egg=clip
 
 WORKDIR /app/latent-diffusion
 
@@ -28,4 +28,4 @@ COPY ldm/ ./ldm/
 
 COPY run.py ./
 
-ENTRYPOINT ["python", "run.py"]
+ENTRYPOINT ["python3", "run.py"]
